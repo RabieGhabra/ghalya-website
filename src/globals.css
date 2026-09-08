@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* =========================
+   RESET (IMPORTANT FIX)
+========================= */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+  --almost-black: rgba(18, 18, 18, 1);
+  --crisp-white: rgba(255, 255, 255, 1);
+  --vibrant-pink: rgba(229, 28, 92, 1);
+
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --border: 214.3 31.8% 91.4%;
+  --card: transparent;
+  --card-foreground: 222.2 47.4% 11.2%;
+  --primary: 222.2 47.4% 11.2%;
+}
+
+/* =========================
+   BASE LAYER
+========================= */
+@layer base {
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden; /* 🔥 IMPORTANT FIX */
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+}
+
+/* =========================
+   COMPONENTS
+========================= */
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+.animate-fade-in {
+  animation: fade-in 1s ease forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 1s ease forwards;
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 8s infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shimmer-width)) 0;
+  }
+  30%, 60% {
+    background-position: calc(100% + var(--shimmer-width)) 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
